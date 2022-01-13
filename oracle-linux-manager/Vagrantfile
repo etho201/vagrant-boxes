@@ -4,6 +4,9 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "server" do |server|
+    server.vm.provider "virtualbox" do |v|
+      v.name = "Oracle Linux Manager"
+    end
     server.vm.box = "oraclelinux/7"
     server.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/7.json"
     server.vm.network "private_network", ip: "192.168.56.10"
@@ -17,6 +20,11 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "client7" do |client7|
+    client7.vm.provider "virtualbox" do |v|
+      v.name = "OL7 Client"
+      v.memory = 1024
+      v.cpus = 1
+    end
     client7.vm.box = "oraclelinux/7"
     client7.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/7.json"
     client7.vm.network "private_network", ip: "192.168.56.11"
@@ -26,6 +34,11 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "client8" do |client8|
+    client8.vm.provider "virtualbox" do |v|
+      v.name = "OL8 Client"
+      v.memory = 1024
+      v.cpus = 1
+    end
     client8.vm.box = "oraclelinux/8"
     client8.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
     client8.vm.network "private_network", ip: "192.168.56.12"
