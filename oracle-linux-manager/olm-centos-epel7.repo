@@ -1,0 +1,6 @@
+[olm_demo]
+name=OLM Demo
+baseurl=http://192.168.56.10/pub/1/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=0
+enabled=1
