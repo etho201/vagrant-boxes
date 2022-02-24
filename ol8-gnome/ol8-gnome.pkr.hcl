@@ -18,3 +18,15 @@ source "virtualbox-iso" "ol8u5" {
   ]
   shutdown_command = "shutdown -P now"
 }
+
+build {
+  sources = ["sources.virtualbox-iso.ol8u5"]
+
+  provisioner "shell" {
+    script = "scripts/vagrant-base-box.sh"
+  }
+
+  post-processor "vagrant" {
+    output = "ol8-x64-virtualbox.box"
+  }
+}
