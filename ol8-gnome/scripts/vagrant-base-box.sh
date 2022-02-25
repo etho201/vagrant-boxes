@@ -1,3 +1,6 @@
+# Start Gnome when the system boots up
+systemctl set-default graphical.target
+
 # Prepare vagrant user
 useradd vagrant
 usermod -aG wheel vagrant
