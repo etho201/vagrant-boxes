@@ -1,5 +1,6 @@
 # Start Gnome when the system boots up
 systemctl set-default graphical.target
+ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
 
 # Prepare vagrant user
 useradd vagrant
