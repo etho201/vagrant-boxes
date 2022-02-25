@@ -13,8 +13,9 @@ source "virtualbox-iso" "ol8u5" {
     "<up><tab> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ol8-ks.cfg setup_swap=yes <enter>"
   ]
   vboxmanage = [
-    ["modifyvm", "{{.Name}}", "--memory", "2048"],
-    ["modifyvm", "{{.Name}}", "--cpus", "2"],
+    ["modifyvm", "{{.Name}}", "--memory", "4096"],
+    ["modifyvm", "{{.Name}}", "--cpus", "4"],
+    ["modifyvm", "{{.Name}}", "--vram", "64"],
   ]
   shutdown_command = "shutdown -P now"
 }
