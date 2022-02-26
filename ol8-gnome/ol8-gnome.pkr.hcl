@@ -28,6 +28,6 @@ build {
   }
 
   post-processor "vagrant" {
-    output = "ol8-x64-virtualbox.box"
+    output = "ol8-gnome.box"
   }
 }
