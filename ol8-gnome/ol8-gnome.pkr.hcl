@@ -28,10 +28,6 @@ build {
     script = "scripts/vagrant-base-box.sh"
   }
 
-  provisioner "shell" {
-    script = "scripts/install-vnc.sh"
-  }
-
   post-processor "vagrant" {
     output = "ol8-gnome.box"
   }
