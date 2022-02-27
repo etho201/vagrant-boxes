@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ol8-gnome.box"
   config.vm.network "private_network", ip: "192.168.56.15"
+  config.vm.hostname = "ol8-gnome"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
