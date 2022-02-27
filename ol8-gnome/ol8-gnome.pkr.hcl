@@ -1,6 +1,6 @@
 source "virtualbox-iso" "ol8u5" {
   guest_os_type    = "Oracle_64"
-  iso_url          = "/Users/ebthomse/Documents/ISOs/OracleLinux-R8-U5-x86_64-dvd.iso"
+  iso_url          = "/home/erik/Downloads/OracleLinux-R8-U5-x86_64-dvd.iso"
   # iso_url          = "https://yum.oracle.com/ISOS/OracleLinux/OL8/u5/x86_64/OracleLinux-R8-U5-x86_64-dvd.iso"
   iso_checksum     = "none"
   # iso_checksum     = "sha256:45939e85542c19dd519aaad7c4dbe84a6fcadfaca348245f92ae4472fc7f50ac"
@@ -13,6 +13,7 @@ source "virtualbox-iso" "ol8u5" {
     "<up><tab> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ol8-ks.cfg setup_swap=yes <enter>"
   ]
   vboxmanage = [
+    ["modifyvm", "{{.Name}}", "--graphicscontroller", "vmsvga"],
     ["modifyvm", "{{.Name}}", "--memory", "4096"],
     ["modifyvm", "{{.Name}}", "--cpus", "4"],
     ["modifyvm", "{{.Name}}", "--vram", "64"],
@@ -25,6 +26,10 @@ build {
 
   provisioner "shell" {
     script = "scripts/vagrant-base-box.sh"
+  }
+
+  provisioner "shell" {
+    script = "scripts/install-vnc.sh"
   }
 
   post-processor "vagrant" {
