@@ -18,3 +18,5 @@ Connect to the server using VNC. Password is `vagrant`
 ```
 vnc://192.168.56.15:5901
 ```
+
+> **INFO:** If you connect and only see a black screen, try rebooting (this probably only needs to be done the first time you connect).
