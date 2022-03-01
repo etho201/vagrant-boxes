@@ -1,6 +1,6 @@
 # Oracle Linux Manager
 
-This Vagrant box installs and configures the latest Oracle Linux Manager (formerly Spacewalk) on the latest Oracle Linux 7 release. It will automatically configure a username and password for Oracle Linux manager, automatically sets up channels and repositories for Oracle Linux 7, Oracle Linux 8, as well as Ksplice. It will then spin up a OL7 host and OL8 host and automatically register them to the Oracle Linux Manager.
+This Vagrant box installs and configures the latest Oracle Linux Manager (formerly Spacewalk) on the latest Oracle Linux 7 release. It will automatically configure a username and password for Oracle Linux Manager, automatically sets up channels and repositories for Oracle Linux 7, Oracle Linux 8, as well as Ksplice. It will then spin up a OL7 host and OL8 host and automatically register them to the Oracle Linux Manager.
 
 ## Getting started:
 

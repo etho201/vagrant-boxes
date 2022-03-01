@@ -12,6 +12,9 @@ curl https://raw.githubusercontent.com/hashicorp/vagrant/main/keys/vagrant.pub >
 chmod 600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
+# Keep SSH speedy even when not connected to the internet
+echo "UseDNS no" >> /etc/ssh/sshd_config
+
 # Install packages required for VirtualBox Guest Additions
 dnf install -y tar bzip2 kernel-uek-devel gcc make perl
 
