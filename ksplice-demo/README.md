@@ -16,7 +16,7 @@ The Dirty COW bug is a privilege escalation vulnerability in the Linux Kernel, s
     packer build ol7-ksplice-dirtycow.pkr.hcl
     ```
 
-1. Before we run `vagrant up`, we need to create a `variables.yaml` file that contains our ULN credentials. Run the below command to create the variables file and place in the same directory as the Vagrantile.
+1. Before we run `vagrant up`, we need to create a `variables.yaml` file that contains our ULN credentials. Run the below command to create the variables file and place in the same directory as the Vagrantfile.
 
     ```bash
     cat <<EOF > variables.yaml
