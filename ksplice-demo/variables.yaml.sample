@@ -1,0 +1,5 @@
+---
+uln:
+  username: YOUR_ORACLE_SSO@EMAIL.COM
+  password: YOUR_ORACLE_SSO_PASSWORD
+  csi: YOUR_ORACLE_CSI
