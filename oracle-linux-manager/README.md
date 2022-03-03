@@ -25,3 +25,9 @@ This Vagrant box installs and configures the latest Oracle Linux Manager (former
     vagrant ssh client7 # this is the OL7 client that is registered to OLM
     vagrant ssh client8 # this is the OL8 client that is registered to OLM
     ```
+
+---
+
+## Access to ULN
+
+If you wish to automate syncing with ULN, modify the `secret.sh.sample` in the `scripts/` directory by inputting the Oracle SSO username and password you use for ULN access. Once done, rename this file to `secret.sh`. When running `vagrant up`, if the `secret.sh` file exists and properly configured, it will automatically sync the Ksplice channels once OLM is up and running.

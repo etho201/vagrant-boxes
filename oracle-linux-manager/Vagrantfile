@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     server.vm.provision "shell", path: "scripts/provision.sh"
     server.vm.provision "shell", path: "scripts/first-user.sh"
     server.vm.provision "shell", path: "scripts/olm-config.sh"
-    if(File.file?("secret.sh")) 
+    if(File.file?("scripts/secret.sh")) 
       server.vm.provision "shell", path: "scripts/secret.sh"
     end
     server.vm.provision "shell", inline: "echo Access Oracle Linux Manager at https://192.168.56.10"
