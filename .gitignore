@@ -2,3 +2,5 @@
 .vagrant
 secret.sh
 *.box
+*.log
+variables.yaml
