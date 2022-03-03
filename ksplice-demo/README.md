@@ -4,7 +4,7 @@
 
 This Vagrant box is intended to provide an quick demonstration of the advantages of Oracle Ksplice. For this demonstration, we will take a look at the [Dirty COW bug](https://dirtycow.ninja/) (`CVE-2016-5195`) that came out in October of 2016. With that being said, we needed to deploy an operating system that was released before that timeframe. Oracle Linux 7.2 was released in November of 2015 so if you start from the installation media, it would not be patched and protected from the Dirty COW exploit.
 
-The Dirty COW bug is a privilege escalation vulnerability in the Linux Kernel, so typically you would patch the kernel, but and you wouldn't be protected until after a reboot. However, thanks to Ksplice, we can live-patch the kernel and protect our system on the fly without a reboot.
+The Dirty COW bug is a privilege escalation vulnerability in the Linux Kernel, so typically you would patch the kernel, but you wouldn't be protected until after a reboot. However, thanks to Ksplice, we can live-patch the kernel and protect our system on the fly without a reboot.
 
 ---
 
