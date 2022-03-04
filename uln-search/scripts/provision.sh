@@ -21,3 +21,6 @@ for i in $(uln-channel -u ${USERNAME} -p ${PASSWORD} -L); do
     fi
 done
 uln-channel -u ${USERNAME} -p ${PASSWORD} $CHANNEL_LIST
+
+# Generate the metadata cache
+dnf makecache
