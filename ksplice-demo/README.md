@@ -2,21 +2,21 @@
 
 ## Overview:
 
-This Vagrant box is intended to provide an quick demonstration of the advantages of Oracle Ksplice. For this demonstration, we will take a look at the [Dirty COW bug](https://dirtycow.ninja/) (`CVE-2016-5195`) that came out in October of 2016. With that being said, we needed to deploy an operating system that was released before that timeframe. Oracle Linux 7.2 was released in November of 2015 so if you start from the installation media, it would not be patched and protected from the Dirty COW exploit.
+This Vagrant box is intended to provide a quick demonstration of the advantages of Oracle Ksplice. For this demonstration, we will take a look at the [Dirty COW bug](https://dirtycow.ninja/) (`CVE-2016-5195`) that came out in October of 2016. With that being said, we need to deploy an operating system that was released before that timeframe. Oracle Linux 7.2 was released in November of 2015 so if you start from the installation media, it would not be patched and protected from the Dirty COW exploit.
 
-The Dirty COW bug is a privilege escalation vulnerability in the Linux Kernel, so typically you would patch the kernel, but you wouldn't be protected until after a reboot. However, thanks to Ksplice, we can live-patch the kernel and protect our system on the fly without a reboot.
+The Dirty COW bug is a privilege escalation vulnerability in the Linux Kernel, so typically you would patch the kernel, but you wouldn't be protected until after a reboot. However, thanks to Ksplice, we can live-patch the kernel and protect our system on the fly without rebooting.
 
 ---
 
 ## Getting Starting:
 
-1. This Vagrant Box is not hosted in the public Vagrant registry, so you'll first need to build it yourself using Packer. Packer will create an Oracle Linux 7.2 virtual machine and prepares it for use with Vagrant.
+1. This Vagrant Box is not hosted in the public Vagrant registry, so you'll first need to build it yourself using Packer. We'll use Packer to create an Oracle Linux 7.2 virtual machine and prepare it for use with Vagrant.
 
     ```bash
     packer build ol7-ksplice-dirtycow.pkr.hcl
     ```
 
-1. Before we run `vagrant up`, we need to create a `variables.yaml` file that contains our ULN credentials. Run the below command to create the variables file and place in the same directory as the Vagrantfile.
+1. Before we run `vagrant up`, we need to create a `variables.yaml` file that contains our ULN credentials. Run the below command (with your credentials) to create the variables file and place in the same directory as the Vagrantfile.
 
     ```bash
     cat <<EOF > variables.yaml
