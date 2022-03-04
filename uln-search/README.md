@@ -24,12 +24,21 @@
     vagrant ssh
     ```
 
-1. Once connected, you can use `dnf` to search for package names. For example, if you want to seach for packages that contain the word "ansible", you can run:
+1. Once connected, you can use `dnf` to search for package names.
 
-    ```bash
-    dnf -C list *ansible*
-    ```
-    > **NOTE:** `-C` caches the list so you don't have to download the data each time.
+    - For example, if you want to seach for packages that contain the word "ansible", you can run:
+
+        ```bash
+        dnf -C list *ansible*
+        ```
+        > **NOTE:** `-C` caches the list so you don't have to download the data each time.
+
+    - Create a list of all packages:
+
+        ```bash
+        dnf -C list all > uln-packages.txt
+        ```
+        > **NOTE:** Now you can search this list via grep. For example, to search for teh word ansible, just run: `grep -i ansible uln-packages.txt`
 
 ---
 
