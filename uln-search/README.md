@@ -38,7 +38,7 @@
         ```bash
         dnf -C list all > uln-packages.txt
         ```
-        > **NOTE:** Now you can search this list via grep. For example, to search for teh word ansible, just run: `grep -i ansible uln-packages.txt`
+        > **NOTE:** Now you can search this list via `grep`. For example, to search for the word "ansible", just run: `grep -i ansible uln-packages.txt`
 
 ---
 
