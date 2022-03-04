@@ -2,6 +2,9 @@ require 'yaml'
 variables = YAML.load_file(File.join(File.dirname(__FILE__), 'variables.yaml'))
 
 Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox" do |v|
+    v.name = "ULN Search"
+  end
   config.vm.box = "oraclelinux/8"
   config.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
   config.vm.hostname = "uln-search"
