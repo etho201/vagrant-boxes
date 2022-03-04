@@ -30,3 +30,8 @@
     dnf -C list *ansible*
     ```
     > **NOTE:** `-C` caches the list so you don't have to download the data each time.
+
+---
+
+## Additional Resources:
+- Tips on useful search techniques can be found here: https://unix.stackexchange.com/questions/6521/how-to-force-yum-search-to-use-local-metadata-cache
