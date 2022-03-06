@@ -47,13 +47,11 @@
 Containers are faster than virtual machines, and you can achieve the same results using containers. Here's how:
 
 ```bash
-docker build -t oracle/uln-search .
-
-docker run --rm --hostname=uln-search -v ${PWD}/data \
---env USERNAME=$(docker run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.username' variables.yaml) \
---env PASSWORD=$(docker run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.password' variables.yaml) \
---env CSI=$(docker run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.csi' variables.yaml) \
--t oracle/uln-search
+podman run --rm --hostname=uln-search -v ${PWD}:/data \
+--env USERNAME=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.username' variables.yaml) \
+--env PASSWORD=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.password' variables.yaml) \
+--env CSI=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.csi' variables.yaml) \
+-t --entrypoint /data/scripts/provision.sh oraclelinux:8
 ```
 
 > **NOTE:** There are many ways to do this, but in this case we're using sub-processes to parse the credentials from the `variables.yaml` file. 
