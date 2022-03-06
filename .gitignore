@@ -4,3 +4,4 @@ secret.sh
 *.box
 *.log
 variables.yaml
+uln-packages.txt
