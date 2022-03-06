@@ -24,3 +24,4 @@ uln-channel -u ${USERNAME} -p ${PASSWORD} $CHANNEL_LIST
 
 # Generate the metadata cache
 dnf makecache
+dnf -C list all > /data/uln-packages.txt

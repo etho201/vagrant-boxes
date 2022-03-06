@@ -42,5 +42,21 @@
 
 ---
 
+## Want to do the same thing with a container instead?
+
+Containers are faster than virtual machines, and you can achieve the same results using containers. Here's how:
+
+```bash
+docker build -t oracle/uln-search .
+
+docker run --rm --hostname=uln-search -v ${PWD}/data \
+--env USERNAME=$(docker run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.username' variables.yaml) \
+--env PASSWORD=$(docker run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.password' variables.yaml) \
+--env CSI=$(docker run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.csi' variables.yaml) \
+-t oracle/uln-search
+```
+
+> **NOTE:** There are many ways to do this, but in this case we're using sub-processes to parse the credentials from the `variables.yaml` file. 
+
 ## Additional Resources:
 - Tips on useful search techniques can be found here: https://unix.stackexchange.com/questions/6521/how-to-force-yum-search-to-use-local-metadata-cache
