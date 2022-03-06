@@ -44,7 +44,7 @@
 
 ## Want to do the same thing with a container instead?
 
-1. Containers are faster than virtual machines, and are better suited for single-purpose uses. Using a container to create export a list of packages to a text file is a perfect example of this. Just run the following to launch an OL8 container that will create a file called `uln-packages.txt` containing the entire ULN catalog:
+1. Containers are faster than virtual machines, and are perfect when you only need to perform simple operations. Using a container to export a list of packages to a text file is a good example of this. Just run the following to launch an OL8 container that will create a file called `uln-packages.txt` containing the entire ULN catalog:
 
     ```bash
     podman run --rm --hostname=uln-search -v ${PWD}:/data \
