@@ -44,7 +44,11 @@
 
 ## Want to do the same thing with a container instead?
 
-1. Using a Vagrant box is a bit overkill for what we're trying to do here. Containers are faster than virtual machines, and are perfect when you only need to perform single-purpose operations. Using a container to export a list of packages to a text file is a good example of this. Just run the following to launch an OL8 container that will create a file called `uln-packages.txt` containing the entire ULN catalog:
+Using a Vagrant box is a bit overkill for what we're trying to do here. Containers are faster than virtual machines, and are perfect when you only need to perform single-purpose operations. Using a container to export a list of packages to a text file is a good example of this.
+
+1. Before we run the container, we need to create a `variables.yaml` file that contains our ULN credentials. Refer to step one from [above](#uln-search).
+
+1. Now, simply run the following to launch an OL8 container that will create a file called `uln-packages.txt` containing the entire ULN catalog:
 
     ```bash
     podman run --rm --hostname=uln-search -v ${PWD}:/data \
