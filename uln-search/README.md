@@ -44,17 +44,17 @@
 
 ## Want to do the same thing with a container instead?
 
-Containers are faster than virtual machines, and you can achieve the same results using containers. Here's how:
+1. Containers are faster than virtual machines, and are better suited for single-purpose uses. Using a container to create export a list of packages to a text file is a perfect example of this. Just run the following to launch an OL8 container that will create a file called `uln-packages.txt` containing the entire ULN catalog:
 
-```bash
-podman run --rm --hostname=uln-search -v ${PWD}:/data \
---env USERNAME=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.username' variables.yaml) \
---env PASSWORD=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.password' variables.yaml) \
---env CSI=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.csi' variables.yaml) \
--t --entrypoint /data/scripts/provision.sh oraclelinux:8
-```
+    ```bash
+    podman run --rm --hostname=uln-search -v ${PWD}:/data \
+    --env USERNAME=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.username' variables.yaml) \
+    --env PASSWORD=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.password' variables.yaml) \
+    --env CSI=$(podman run --rm -v ${PWD}:/workdir mikefarah/yq e '.uln.csi' variables.yaml) \
+    -t --entrypoint /data/scripts/provision.sh oraclelinux:8
+    ```
 
-> **NOTE:** There are many ways to do this, but in this case we're using sub-processes to parse the credentials from the `variables.yaml` file. 
+    > **NOTE:** There are many ways to do this, but in this case we're using sub-processes to parse the credentials from the `variables.yaml` file. 
 
 ## Additional Resources:
 - Tips on useful search techniques can be found here: https://unix.stackexchange.com/questions/6521/how-to-force-yum-search-to-use-local-metadata-cache
