@@ -65,5 +65,10 @@ Want to do the same thing with a container instead? Using a Vagrant box is a bit
 
     > **NOTE:** There are many ways to do this, but in this case we're using sub-processes to parse the credentials from the `variables.yaml` file. 
 
-## Additional Resources:
-- Tips on useful search techniques can be found here: https://unix.stackexchange.com/questions/6521/how-to-force-yum-search-to-use-local-metadata-cache
+## Additional Notes:
+
+- You can omit channels by editing `scripts/provision.sh`. For example, if you want to omit channels related to earlier versions  of Oracle Linux, add something like this into the `if` statement that builds the list of channels:
+
+    ```
+    && [[ $i != "el3_"* ]] && [[ $i != "el4_"* ]] && [[ $i != "el5_"* ]] && [[ $i != "ol5_"* ]] && [[ $i != "ol6_"* ]] && [[ $i != "ol7_"* ]]
+    ```
