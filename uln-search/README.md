@@ -74,3 +74,8 @@ Want to do the same thing with a container instead? Using a Vagrant box is a bit
     ```
 
 - Release RPMs for the Oracle Linux Yum Server: https://yum.oracle.com/getting-started.html
+
+    ```
+    podman run --rm --hostname=yum-search -v ${PWD}:/data \
+    -t --entrypoint /data/scripts/yum.sh oraclelinux:8
+    ```
