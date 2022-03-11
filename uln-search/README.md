@@ -72,3 +72,5 @@ Want to do the same thing with a container instead? Using a Vagrant box is a bit
     ```
     && [[ $i != "el3_"* ]] && [[ $i != "el4_"* ]] && [[ $i != "el5_"* ]] && [[ $i != "ol5_"* ]] && [[ $i != "ol6_"* ]] && [[ $i != "ol7_"* ]]
     ```
+
+- Release RPMs for the Oracle Linux Yum Server: https://yum.oracle.com/getting-started.html
