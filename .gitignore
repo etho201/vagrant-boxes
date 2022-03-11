@@ -5,3 +5,4 @@ secret.sh
 *.log
 variables.yaml
 uln-packages.txt
+yum-packages.txt
