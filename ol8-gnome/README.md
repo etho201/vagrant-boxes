@@ -20,3 +20,11 @@ vnc://192.168.56.15:5901
 ```
 
 > **INFO:** If you connect and only see a black screen, try rebooting (this probably only needs to be done the first time you connect).
+
+---
+
+# FAQ
+
+## Gnome Login Loop:
+
+If you see the Gnome login screen and if after logging in it reverts back to the login screen (over and over again), a workaround is to change the X display. To do this, press ctrl+F2 (or ⌘+F2 on Mac), enter your credentials, then enter the command `start x`.
