@@ -24,3 +24,16 @@ Then run:
 This method requires the user to have `spacecmd` installed on all client systems, and it also requires the OLM password.
 
 If I were the administrator, I would probably run a FastAPI service on the OLM server, and have systems call out to that API (this way I would not have to require the user to install spacecmd, nor would I need to expose the OLM username and password to the user)… In that scenario, the systems could be registered via a simple curl command that would hit the FastAPI endpoint, and I would use FastAPI to execute the registration/re-registration of the server.
+
+---
+
+# FastAPI
+
+```bash
+dnf install -y python3
+pip3 install fastapi uvicorn
+```
+
+> `pip3 install "fastapi[all]"` includes uvicorn
+
+
