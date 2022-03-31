@@ -15,10 +15,20 @@ Vagrant.configure("2") do |config|
     server.vm.provision "file", source: "files/answer-file.txt", destination: "/tmp/answer-file.txt"
     server.vm.provision "shell", path: "scripts/provision.sh"
     server.vm.provision "shell", path: "scripts/first-user.sh"
+
+    # Configure custom API
+    if(File.file?("olm-api/fastapi.sh")) 
+      server.vm.provision "file", source: "olm-api", destination: "/home/vagrant/olm-api"
+      server.vm.provision "shell", path: "olm-api/fastapi.sh"
+    end
+
     server.vm.provision "shell", path: "scripts/olm-config.sh"
+
+    # Configure ULN
     if(File.file?("scripts/secret.sh")) 
       server.vm.provision "shell", path: "scripts/secret.sh"
     end
+
     server.vm.provision "shell", inline: "echo Access Oracle Linux Manager at https://192.168.56.10"
   end
 
