@@ -1,0 +1,3 @@
+[submodule "oracle-linux-manager/olm-api"]
+	path = oracle-linux-manager/olm-api
+	url = git@github.com:etho201/olm-api.git
