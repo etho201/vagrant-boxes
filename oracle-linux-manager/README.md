@@ -31,3 +31,26 @@ This Vagrant box installs and configures the latest Oracle Linux Manager (former
 ## Access to ULN
 
 If you wish to automate syncing with ULN, modify the `secret.sh.sample` in the `scripts/` directory by inputting the Oracle SSO username and password you use for ULN access. Once done, rename this file to `secret.sh`. When running `vagrant up`, if the `secret.sh` file exists and properly configured, it will automatically sync the Ksplice channels once OLM is up and running.
+
+---
+
+## Git Submodule
+
+You may have noticed there is a Git submodule configured with this repository, that is because this submodule contains code that has not been made available to the public. If you have access to the private repository the submodule references, you may pull this in with:
+
+<details open>
+<summary>Option 1 (You already have the <code>vagrant-boxes</code> repo cloned)</summary>
+
+```bash
+git submodule init
+git submodule update
+```
+</details>
+
+<details>
+<summary>Option 2 (You are cloning for the first time)</summary>
+
+```bash
+git clone --recurse-submodules git@github.com:etho201/vagrant-boxes.git
+```
+</details>
