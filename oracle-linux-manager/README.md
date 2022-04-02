@@ -36,20 +36,20 @@ If you wish to automate syncing with ULN, modify the `secret.sh.sample` in the `
 
 ## Git Submodule
 
-You may have noticed there is a Git submodule configured with this repository, that is because this submodule contains code that has not been made available to the public. If you have access to the private repository the submodule references, you may pull this in with:
+You may have noticed that a Git submodule is configured with this repository; that is because this submodule contains code that has not been made available to the public. If you have access to the [private repository](https://github.com/etho201/olm-api/) that the submodule references, you may pull this in with:
 
 <details open>
 <summary>Option 1 (you already have the <code>vagrant-boxes</code> repo cloned)</summary>
 
-
 ```bash
 git submodule update --init
 ```
-   
-Check for updates with:
-```
-git submodule update
-```
+
+> **NOTE:** Once you have the submodule cloned, you can check for updates with:
+> ```bash
+> git submodule update --remote
+> ```
+
 </details>
 
 <details>
@@ -58,4 +58,10 @@ git submodule update
 ```bash
 git clone --recurse-submodules git@github.com:etho201/vagrant-boxes.git
 ```
+
+> **NOTE:** Once you have the submodule cloned, you can check for updates with:
+> ```bash
+> git submodule update --remote
+> ```
+
 </details>
