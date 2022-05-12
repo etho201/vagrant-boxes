@@ -1,6 +1,31 @@
 
 
-# Podman-Machine Vagrant Box
+# Podman-Machine Vagrant Box (deprecated)
+
+## UPDATE: As of Podman v4.1.0, Podman now supports mounting the host machine’s home directory into the podman machine VMs by default.
+
+Thanks to the latest update made to Podman, this Vagrant box is now deprecated. If you used this README before, here is how you can revert back and use the new podman machine that comes with Podman.
+
+1. Make sure you have at least Podman v4.1.0 installed
+
+    ```bash
+    podman --version
+    ```
+
+2. Run the following to point the default connection to the native podman-machine and recreate the machine so that it matches the latest version of Podman.
+
+    ```bash
+    podman-remote system connection default podman-machine-default
+    podman machine list
+    podman machine rm podman-machine-default
+    podman machine init
+    podman machine start
+    podman machine info
+    ```
+
+3. That's it. From this point on, you should just need to run `podman machine start` and bind mounting will work without any fuss.
+
+---
 
 You can of course use the new podman-machine that comes with Podman by typing `podman machine init` and `podman machine start`, but that currently lacks the ability to bind mount the host system. This Vagrant box solves that problem (see [Bind Mounting](#bind-mounting) for more info).
 
