@@ -27,6 +27,8 @@ Thanks to the latest update made to Podman, this Vagrant box is now deprecated. 
 
 ---
 
+## Getting Started (deprecated -- see note above)
+
 You can of course use the new podman-machine that comes with Podman by typing `podman machine init` and `podman machine start`, but that currently lacks the ability to bind mount the host system. This Vagrant box solves that problem (see [Bind Mounting](#bind-mounting) for more info).
 
 1. Install Podman on your host machine:
