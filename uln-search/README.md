@@ -1,7 +1,10 @@
 # ULN Search
 
-- [Vagrant Box (VM)](#vagrant-box)
-- [Container Solution](#container-solution)
+- [ULN Search](#uln-search)
+  - [Vagrant Box](#vagrant-box)
+  - [Container Solution:](#container-solution)
+  - [Additional Notes:](#additional-notes)
+  - [Cleanup](#cleanup)
 
 ## Vagrant Box
 
@@ -79,3 +82,10 @@ Want to do the same thing with a container instead? Using a Vagrant box is a bit
     podman run --rm --hostname=yum-search -v ${PWD}:/data \
     -t --entrypoint /data/scripts/yum.sh oraclelinux:8
     ```
+
+---
+
+## Cleanup
+
+- Each time you run this project, it will register a new system in the ULN. The list of registered systems can grow quite large over time.
+- If you wish to remove these automatically, install the Selenium IDE extension in either Firefox or Chrome and run the `\scripts\cleanup.side` file using the Selenium IDE. Modify the target under the `timms` command to change the amount of systems (default is 25) to delete from the list.
