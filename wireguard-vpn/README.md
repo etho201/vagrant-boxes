@@ -11,6 +11,7 @@
       subdomain: YOUR_DOMAIN
       fqdn: YOUR_DOMAIN.duckdns.org
     listen_port: 51820
+    network: nat
     EOF
     ```
 
