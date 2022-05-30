@@ -1,5 +1,7 @@
 ---
-domain:
+duckdns:
   enabled: false
+  token: DUCK_DNS_TOKEN
+  subdomain: YOUR_DOMAIN
   fqdn: YOUR_DOMAIN.duckdns.org
 listen_port: 51820
