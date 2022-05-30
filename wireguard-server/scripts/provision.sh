@@ -36,8 +36,12 @@ echo "[Peer]
 PublicKey = $(cat /etc/wireguard/clients/user1.key.pub)
 AllowedIPs = 192.168.33.101/24" >> /etc/wireguard/wg0.conf
 
-# Start wg0
-wg-quick up wg0
+# Configure firewall
+systemctl enable --now firewalld
+firewall-cmd --zone=public --add-port=${LISTEN_PORT}/udp
+
+# Start WireGuard VPN automatically at boot
+systemctl enable --now wg-quick@wg0
 
 # Generate QR code for easy connection
 qrencode -t ansiutf8 < /etc/wireguard/clients/user1.conf
