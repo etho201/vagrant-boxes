@@ -38,7 +38,9 @@ AllowedIPs = 192.168.33.101/32" >> /etc/wireguard/wg0.conf
 
 # Configure firewall
 systemctl enable --now firewalld
-firewall-cmd --zone=public --add-port=${LISTEN_PORT}/udp --permanent
+firewall-cmd  --permanent --zone=public --add-port=${LISTEN_PORT}/udp
+firewall-cmd --permanent --zone=public --add-masquerade
+firewall-cmd --reload
 
 # Start WireGuard VPN automatically at boot
 systemctl enable --now wg-quick@wg0
