@@ -13,10 +13,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.hostname = "wireguard-vpn"
-
-  if variables['network'] == "nat"
-    config.vm.network "forwarded_port", guest: variables['listen_port'], host: variables['listen_port'], protocol: "udp"
-  end
+  config.vm.network "forwarded_port", guest: variables['listen_port'], host: variables['listen_port'], protocol: "udp"
 
   config.vm.provision 'shell', path: "scripts/provision.sh", env: {
     "DUCKDNS"=>variables['duckdns']['enabled'],
