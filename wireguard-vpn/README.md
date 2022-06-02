@@ -29,7 +29,21 @@
 
 ---
 
-Connect:
+## Performance
+
+Vagrant will create the VM using NAT networking, which isn't the most performant. To improve throughput, after the VM is created, shut it down and change the network to `Bridged Adapter` and the type to `Paravirtualized Network (virtio-net)`.
+
+> **NOTE:** Changing the network card manually will result in needing to start the VM from VirtualBox (instead of Vagrant). To maintain the ability to access/modify the VM, it would be a good idea to create a new user beforehand and allow SSH (by editing `/etc/ssh/sshd_config` and setting `PasswordAuthentication` to `yes`).
+
+---
+
+## Connect:
+
+```bash
+sudo podman run --rm -v ${PWD}/wg0.conf:/config/wg0.conf --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -td --hostname wireguard --name=wireguard --network host linuxserver/wireguard
+sudo podman exec -it wireguard wg-quick down wg0
+sudo podman kill wireguard
+```
 
 ```bash
 sudo podman run -d \
