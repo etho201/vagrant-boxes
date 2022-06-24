@@ -1,0 +1,57 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+variables = YAML.load_file(File.join(File.dirname(__FILE__), 'variables.yaml'))
+
+Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--groups", "/OLAM"]
+  end
+
+  config.vm.define "server" do |server|
+    server.vm.provider "virtualbox" do |v|
+      v.name = "Oracle Linux Automation Manager"
+    end
+    server.vm.box = "oraclelinux/8"
+    server.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+    server.vm.network "private_network", ip: variables['hostname']
+    server.vm.hostname = "olam"
+
+    config.vm.provision 'shell', path: "scripts/provision.sh", env: {
+      "HOSTNAME"=>variables['hostname'],
+      "EMAIL"=>variables['email'],
+      "PASSWORD"=>variables['password']
+    }
+
+    server.vm.provision "shell", inline: "echo Access Oracle Linux Automation Manager at ${HOSTNAME}", env: { "HOSTNAME"=>variables['hostname'] }
+  end
+
+  # config.vm.define "client7" do |client7|
+  #   client7.vm.provider "virtualbox" do |v|
+  #     v.name = "OL7 Client"
+  #     v.memory = 1024
+  #     v.cpus = 1
+  #   end
+  #   client7.vm.box = "oraclelinux/7"
+  #   client7.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/7.json"
+  #   client7.vm.network "private_network", ip: "192.168.56.21"
+  #   client7.vm.hostname = "ol7"
+
+  #   client7.vm.provision "shell", path: "scripts/register7.sh"
+  # end
+
+  # config.vm.define "client8" do |client8|
+  #   client8.vm.provider "virtualbox" do |v|
+  #     v.name = "OL8 Client"
+  #     v.memory = 1024
+  #     v.cpus = 1
+  #   end
+  #   client8.vm.box = "oraclelinux/8"
+  #   client8.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+  #   client8.vm.network "private_network", ip: "192.168.56.22"
+  #   client8.vm.hostname = "ol8"
+
+  #   client8.vm.provision "shell", path: "scripts/register8.sh"
+  # end
+end
