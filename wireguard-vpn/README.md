@@ -39,8 +39,11 @@ Vagrant will create the VM using NAT networking, which isn't the most performant
 
 ## Connect:
 
+:star:
+
 ```bash
 sudo podman run --rm -v ${PWD}/wg0.conf:/config/wg0.conf --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -td --hostname wireguard --name=wireguard --network host linuxserver/wireguard
+
 sudo podman exec -it wireguard wg-quick down wg0
 sudo podman kill wireguard
 ```
