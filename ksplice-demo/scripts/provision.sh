@@ -17,3 +17,6 @@ yum install -y uptrack
 # OL7:
 yum install -y oracle-epel-release-el7
 yum install -y --enablerepo=ol7_developer_EPEL ansible-python3
+
+# Copy Ansible role to check for Dirty COW vulnerability
+cp -R --preserve /vagrant/CVE-2016-5195_check/* /home/vagrant
