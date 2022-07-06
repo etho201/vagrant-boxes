@@ -1,0 +1,35 @@
+require 'yaml'
+variables = YAML.load_file(File.join(File.dirname(__FILE__), 'variables.yaml'))
+
+Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox" do |v|
+    v.name = "Ksplice Offline"
+  end
+  config.vm.box = "oraclelinux/8"
+  config.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+  config.vm.hostname = "ksplice-offline"
+
+  config.vm.provision "shell", inline: "mkdir /home/vagrant/yum", privileged: false
+
+  config.vm.provision "podman" do |d|
+    d.build_image "/vagrant/files", args: "-t ol-repo-sync", privileged: false
+  end
+
+  # Mirror ksplice packages
+  config.vm.provision "shell",
+    inline: 'podman run --rm -t --hostname=ol-repo-sync -v /home/vagrant/yum:/var/yum:z ol-repo-sync -c "ulnreg_ks --username=${USERNAME} --password=${PASSWORD} --csi=${CSI}; uln-channel -u ${USERNAME} -p ${PASSWORD} --enable-yum-server; uln-channel -u ${USERNAME} -p ${PASSWORD} -c ol8_x86_64_ksplice -a; reposync --delete --newest-only --repoid ol8_x86_64_ksplice --download-metadata -p /var/yum"', env: {
+    "USERNAME"=>variables['uln']['username'],
+    "PASSWORD"=>variables['uln']['password'],
+    "CSI"=>variables['uln']['csi']
+  }, sensitive: true
+
+  # Fix permissions
+  config.vm.provision "shell",
+    inline: 'setenforce 0; chmod -R 755 /home/vagrant/yum/'
+
+  # Serve the repo
+  config.vm.provision "shell", inline: 'podman run -d --name ol-repo-web -p 8080:80 -v /home/vagrant/yum:/usr/share/nginx/html:ro -v /vagrant/files/default.conf:/etc/nginx/conf.d/default.conf:ro nginx'
+
+  # Point to mirror
+  config.vm.provision "shell", inline: "cp /vagrant/files/local-yum.repo /etc/yum.repos.d/"
+end

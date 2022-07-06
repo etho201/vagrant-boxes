@@ -1,0 +1,6 @@
+[local_ol8_x86_64_ksplice]
+name=Ksplice for Oracle Linux $releasever - $basearch
+baseurl=http://localhost:8080/ol8_x86_64_ksplice
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+gpgcheck=1
+enabled=1

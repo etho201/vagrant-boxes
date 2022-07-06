@@ -1,0 +1,117 @@
+{
+  "id": "51aa1742-5740-43b2-9fc3-b8aad14b2b85",
+  "version": "2.0",
+  "name": "Remove system from ULN",
+  "url": "https://linux.oracle.com",
+  "tests": [{
+    "id": "50f7b6eb-34ca-40b1-ac16-6691c3b09c1c",
+    "name": "Delete System",
+    "commands": [{
+      "id": "d2764095-8256-451b-bf67-051609b8efa0",
+      "comment": "",
+      "command": "open",
+      "target": "/ords/f?p=101:3::::::",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "da2fa981-7723-4881-870f-f7383b34c016",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Systems",
+      "targets": [
+        ["linkText=Systems", "linkText"],
+        ["css=.non-current:nth-child(3) > .tab_link", "css:finder"],
+        ["xpath=//a[contains(text(),'Systems')]", "xpath:link"],
+        ["xpath=//ul[@id='tabs']/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, \"javascript:apex.submit('T_SYSTEMS');\")]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Systems')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e34a9ae9-4d9c-478f-8eec-5e3bd57e5aad",
+      "comment": "",
+      "command": "times",
+      "target": "25",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2916f9bd-3bb6-4f19-aa5a-ab5c50458198",
+      "comment": "",
+      "command": "click",
+      "target": "css=.highlight-row:nth-child(2) a > img",
+      "targets": [
+        ["css=.highlight-row:nth-child(2) a > img", "css:finder"],
+        ["xpath=//img[@alt='Edit']", "xpath:img"],
+        ["xpath=//table[@id='report_R337469061771085424']/tbody/tr[2]/td/table/tbody/tr[2]/td[9]/a/img", "xpath:idRelative"],
+        ["xpath=//td[9]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bab260a5-eeef-4c57-9faa-630ef1aafdd8",
+      "comment": "",
+      "command": "click",
+      "target": "css=#B340227557306621570 > span",
+      "targets": [
+        ["css=#B340227557306621570 > span", "css:finder"],
+        ["xpath=//button[@id='B340227557306621570']/span", "xpath:idRelative"],
+        ["xpath=//button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d623a083-6a8f-47e1-bd67-198100ae2204",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=#B340227557306621570 > span",
+      "targets": [
+        ["css=#B340227557306621570 > span", "css:finder"],
+        ["xpath=//button[@id='B340227557306621570']/span", "xpath:idRelative"],
+        ["xpath=//button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "510d8ddf-bf9e-4de8-a9e8-0c185fdb9bf6",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=#B340227557306621570 > span",
+      "targets": [
+        ["css=#B340227557306621570 > span", "css:finder"],
+        ["xpath=//button[@id='B340227557306621570']/span", "xpath:idRelative"],
+        ["xpath=//button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec441968-b7c8-427e-b362-f36d2e4adce8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.js-confirmBtn",
+      "targets": [
+        ["css=.js-confirmBtn", "css:finder"],
+        ["xpath=(//button[@type='button'])[6]", "xpath:attributes"],
+        ["xpath=//div/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "90d93c4b-9b70-4b16-80a6-01b0f8806924",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "5c675538-e657-4586-8c65-333e030b8367",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["50f7b6eb-34ca-40b1-ac16-6691c3b09c1c"]
+  }],
+  "urls": ["https://linux.oracle.com/"],
+  "plugins": []
+}
