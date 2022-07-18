@@ -38,4 +38,4 @@ spacecmd -- activationkey_addchildchannels 1-oraclelinux8-x86_64 ol8_x86_64_user
 
 log "Register the Spacewalk server as a client to itself"
 yum install rhn-client-tools rhn-check rhn-setup rhnsd m2crypto yum-rhn-plugin -y
-rhnreg_ks --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT --serverUrl=http://192.168.56.10/XMLRPC --activationkey=1-oraclelinux7-x86_64
+rhnreg_ks --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT --serverUrl=http://${OLM_HOSTNAME}/XMLRPC --activationkey=1-oraclelinux7-x86_64

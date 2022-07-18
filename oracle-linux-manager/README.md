@@ -4,13 +4,21 @@ This Vagrant box installs and configures the latest Oracle Linux Manager (former
 
 ## Getting started:
 
-1. Clone in this repository, and run:
+1. Before we run `vagrant up`, we need to create a `variables.yaml` file to specify the IP address for the Oracle Linux Management server. Whatever IP that you specify, the resulting client IPs will be incremented by one respectively. Run the below command (with your desired IP address) to create the variables file and place in the same directory as the Vagrantfile.
+
+    ```bash
+    cat <<EOF > variables.yaml
+    ---
+    hostname: 192.168.56.10
+    ```
+
+2. Now that you have your variables file, go ahead and fire things up:
 
     ```bash
     vagrant up
     ```
 
-2. Once everything is complete, you can access Oracle Linux Manager in your browser at: https://192.168.56.10
+3. Once everything is complete, you can access Oracle Linux Manager in your browser at: https://192.168.56.10 (or whatever IP address you specified as your hostname)
 
     - Username: `admin`
     - Password: `Password1`
@@ -18,7 +26,7 @@ This Vagrant box installs and configures the latest Oracle Linux Manager (former
 
     > **Note:** If you wish to change these credentials, do so before running `vagrant up` by modifing the `first-user.sh` file.
 
-3. To SSH into the machines:
+4. To SSH into the machines:
 
     ```bash
     vagrant ssh server  # This is the Oracle Linux Manager server
