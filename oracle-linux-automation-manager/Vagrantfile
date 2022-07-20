@@ -25,33 +25,60 @@ Vagrant.configure("2") do |config|
     server.vm.provision 'shell', path: "scripts/provision.sh", env: {
       "HOSTNAME"=>variables['hostname'],
       "EMAIL"=>variables['email'],
-      "PASSWORD"=>variables['password']
+      "PASSWORD"=>variables['password'],
+      "SAMPLE_DEPLOYMENT"=>variables['sample_deployment']
     }
 
     server.vm.provision "shell", inline: "echo Access Oracle Linux Automation Manager at ${HOSTNAME}", env: { "HOSTNAME"=>variables['hostname'] }
   end
 
-  config.vm.define "olam_client1_ol8" do |olam_client1_ol8|
-    olam_client1_ol8.vm.provider "virtualbox" do |v|
-      v.name = "OLAM Client 1 - OL8"
-      v.memory = 1024
-      v.cpus = 1
+  # Deploy sample hosts
+  if(variables['sample_deployment'] == true)
+
+    config.vm.define "atlanta_1" do |atlanta_1|
+      atlanta_1.vm.provider "virtualbox" do |v|
+        v.name = "Atlanta 1"
+      end
+      atlanta_1.vm.box = "oraclelinux/8"
+      atlanta_1.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+      client_ip = client_ip.succ; atlanta_1.vm.network "private_network", ip: client_ip.to_string
+      atlanta_1.vm.hostname = "atlanta1"
+      atlanta_1.vm.provision "shell", inline: "echo 'vagrant:vagrant' | chpasswd; sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; systemctl restart sshd.service"
     end
-    olam_client1_ol8.vm.box = "oraclelinux/8"
-    olam_client1_ol8.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
-    client_ip = client_ip.succ; olam_client1_ol8.vm.network "private_network", ip: client_ip.to_string
-    olam_client1_ol8.vm.hostname = "ol8"
+
+    config.vm.define "atlanta_2" do |atlanta_2|
+      atlanta_2.vm.provider "virtualbox" do |v|
+        v.name = "Atlanta 2"
+      end
+      atlanta_2.vm.box = "oraclelinux/8"
+      atlanta_2.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+      client_ip = client_ip.succ; atlanta_2.vm.network "private_network", ip: client_ip.to_string
+      atlanta_2.vm.hostname = "atlanta2"
+      atlanta_2.vm.provision "shell", inline: "echo 'vagrant:vagrant' | chpasswd; sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; systemctl restart sshd.service"
+    end
+
+    config.vm.define "raleigh_1" do |raleigh_1|
+      raleigh_1.vm.provider "virtualbox" do |v|
+        v.name = "Raleigh 1"
+      end
+      raleigh_1.vm.box = "oraclelinux/8"
+      raleigh_1.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+      client_ip = client_ip.succ; raleigh_1.vm.network "private_network", ip: client_ip.to_string
+      raleigh_1.vm.hostname = "raleigh1"
+      raleigh_1.vm.provision "shell", inline: "echo 'vagrant:vagrant' | chpasswd; sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; systemctl restart sshd.service"
+    end
+
+    config.vm.define "raleigh_2" do |raleigh_2|
+      raleigh_2.vm.provider "virtualbox" do |v|
+        v.name = "Raleigh 2"
+      end
+      raleigh_2.vm.box = "oraclelinux/8"
+      raleigh_2.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+      client_ip = client_ip.succ; raleigh_2.vm.network "private_network", ip: client_ip.to_string
+      raleigh_2.vm.hostname = "raleigh2"
+      raleigh_2.vm.provision "shell", inline: "echo 'vagrant:vagrant' | chpasswd; sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; systemctl restart sshd.service"
+    end
+
   end
 
-  config.vm.define "olam_client2_ol8" do |olam_client2_ol8|
-    olam_client2_ol8.vm.provider "virtualbox" do |v|
-      v.name = "OLAM Client 2 - OL8"
-      v.memory = 1024
-      v.cpus = 1
-    end
-    olam_client2_ol8.vm.box = "oraclelinux/8"
-    olam_client2_ol8.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
-    client_ip = client_ip.succ; olam_client2_ol8.vm.network "private_network", ip: client_ip.to_string
-    olam_client2_ol8.vm.hostname = "ol8"
-  end
 end

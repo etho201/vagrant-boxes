@@ -1,3 +1,4 @@
 hostname: 192.168.56.20
 email: root@localhost
 password: Password1
+sample_deployment: true

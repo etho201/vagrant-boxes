@@ -4,5 +4,9 @@ secret.sh
 *.box
 *.log
 variables.yaml
+variables.yml
+variables.yml.backup
 uln-packages.txt
 yum-packages.txt
+oracle-linux-automation-manager/scripts/collections/*
+!oracle-linux-automation-manager/scripts/collections/requirements.yml

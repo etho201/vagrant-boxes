@@ -1,0 +1,33 @@
+- name: "Add inventory for each location"
+  awx.awx.inventory:
+    name: "{{ item.name }}"
+    description: "Computers in {{ item.name }}"
+    organization: "Default"
+    state: present
+    validate_certs: no
+    controller_oauthtoken: "{{ awx_admin_token }}"
+  loop: "{{ vars.inventory }}"
+
+- name: Add an inventory source for each location
+  awx.awx.inventory_source:
+    name: "hosts"
+    description: Source for inventory
+    inventory: "{{ item.name }}"
+    source: "scm"
+    source_project: "{{ project_name }}"
+    source_path: "hosts"
+    host_filter: "{{ item.host_filter }}"
+    overwrite: True
+    update_on_launch: True
+    organization: Default
+    validate_certs: no
+    controller_oauthtoken: "{{ awx_admin_token }}"
+  loop: "{{ vars.inventory }}"
+
+- name: Update inventory source for each location
+  awx.awx.inventory_source_update:
+    name: "hosts"
+    inventory: "{{ item.name }}"
+    validate_certs: no
+    controller_oauthtoken: "{{ awx_admin_token }}"
+  loop: "{{ vars.inventory }}"
