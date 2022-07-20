@@ -1,0 +1,19 @@
+---
+- name: Configure Oracle Linux Automation Manager
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    - awx_admin_token: "{{ lookup('file', '/home/vagrant/admin_token') }}"
+
+  vars_files:
+    - variables.yml
+
+  roles:
+    - credentials
+    - projects
+    - inventories
+    - templates
+
+# https://docs.ansible.com/ansible/latest/collections/awx/awx/index.html
