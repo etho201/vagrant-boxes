@@ -6,41 +6,41 @@ require 'ipaddr'
 
 variables = YAML.load_file(File.join(File.dirname(__FILE__), 'variables.yaml'))
 ip = IPAddr.new(variables['hostname'])
-client_ip = IPAddr.new(variables['hostname'])
+client_ip = ip.native
 
 Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.customize ["modifyvm", :id, "--groups", "/OLM"]
   end
 
-  config.vm.define "server" do |server|
-    server.vm.provider "virtualbox" do |v|
+  config.vm.define "olm" do |olm|
+    olm.vm.provider "virtualbox" do |v|
       v.name = "Oracle Linux Manager"
     end
-    server.vm.box = "oraclelinux/7"
-    server.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/7.json"
-    server.vm.network "private_network", ip: ip.to_string
-    server.vm.hostname = "olm"
+    olm.vm.box = "oraclelinux/7"
+    olm.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/7.json"
+    olm.vm.network "private_network", ip: ip.to_string
+    olm.vm.hostname = "olm"
 
-    server.vm.provision "file", source: "files/answer-file.txt", destination: "/tmp/answer-file.txt"
-    server.vm.provision "shell", path: "scripts/provision.sh"
-    server.vm.provision "shell", path: "scripts/first-user.sh"
+    olm.vm.provision "file", source: "files/answer-file.txt", destination: "/tmp/answer-file.txt"
+    olm.vm.provision "shell", path: "scripts/provision.sh"
+    olm.vm.provision "shell", path: "scripts/first-user.sh"
 
     # Configure custom API
     if(File.file?("olm-api/fastapi.sh"))
-      server.vm.provision "file", source: "olm-api", destination: "/home/vagrant/olm-api"
-      server.vm.provision "shell", inline: "envsubst '$OLM_HOSTNAME' </home/vagrant/olm-api/src/api.py.template >/home/vagrant/olm-api/src/api.py", env: { "OLM_HOSTNAME"=>variables['hostname'] }
-      server.vm.provision "shell", path: "olm-api/fastapi.sh", env: { "OLM_HOSTNAME"=>variables['hostname'] }
+      olm.vm.provision "file", source: "olm-api", destination: "/home/vagrant/olm-api"
+      olm.vm.provision "shell", inline: "envsubst '$OLM_HOSTNAME' </home/vagrant/olm-api/src/api.py.template >/home/vagrant/olm-api/src/api.py", env: { "OLM_HOSTNAME"=>variables['hostname'] }
+      olm.vm.provision "shell", path: "olm-api/fastapi.sh", env: { "OLM_HOSTNAME"=>variables['hostname'] }
     end
 
-    server.vm.provision "shell", path: "scripts/olm-config.sh", env: { "OLM_HOSTNAME"=>variables['hostname'] }
+    olm.vm.provision "shell", path: "scripts/olm-config.sh", env: { "OLM_HOSTNAME"=>variables['hostname'] }
 
     # Configure ULN
     if(File.file?("scripts/secret.sh")) 
-      server.vm.provision "shell", path: "scripts/secret.sh"
+      olm.vm.provision "shell", path: "scripts/secret.sh"
     end
 
-    server.vm.provision "shell", inline: "echo Access Oracle Linux Manager at https://${OLM_HOSTNAME}", env: { "OLM_HOSTNAME"=>variables['hostname'] }
+    olm.vm.provision "shell", inline: "echo Access Oracle Linux Manager at https://${OLM_HOSTNAME}", env: { "OLM_HOSTNAME"=>variables['hostname'] }
   end
 
   config.vm.define "client7" do |client7|

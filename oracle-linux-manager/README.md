@@ -29,7 +29,7 @@ This Vagrant box installs and configures the latest Oracle Linux Manager (former
 4. To SSH into the machines:
 
     ```bash
-    vagrant ssh server  # This is the Oracle Linux Manager server
+    vagrant ssh olm  # This is the Oracle Linux Manager server
     vagrant ssh client7 # this is the OL7 client that is registered to OLM
     vagrant ssh client8 # this is the OL8 client that is registered to OLM
     ```

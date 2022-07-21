@@ -13,23 +13,23 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--groups", "/OLAM"]
   end
 
-  config.vm.define "server" do |server|
-    server.vm.provider "virtualbox" do |v|
+  config.vm.define "olam" do |olam|
+    olam.vm.provider "virtualbox" do |v|
       v.name = "Oracle Linux Automation Manager"
     end
-    server.vm.box = "oraclelinux/8"
-    server.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
-    server.vm.network "private_network", ip: ip.to_string
-    server.vm.hostname = "olam"
+    olam.vm.box = "oraclelinux/8"
+    olam.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+    olam.vm.network "private_network", ip: ip.to_string
+    olam.vm.hostname = "olam"
 
-    server.vm.provision 'shell', path: "scripts/provision.sh", env: {
+    olam.vm.provision 'shell', path: "scripts/provision.sh", env: {
       "HOSTNAME"=>variables['hostname'],
       "EMAIL"=>variables['email'],
       "PASSWORD"=>variables['password'],
       "SAMPLE_DEPLOYMENT"=>variables['sample_deployment']
     }
 
-    server.vm.provision "shell", inline: "echo Access Oracle Linux Automation Manager at ${HOSTNAME}", env: { "HOSTNAME"=>variables['hostname'] }
+    olam.vm.provision "shell", inline: "echo Access Oracle Linux Automation Manager at ${HOSTNAME}", env: { "HOSTNAME"=>variables['hostname'] }
   end
 
   # Deploy sample hosts
