@@ -15,10 +15,11 @@
     hostname: 192.168.56.20
     email: root@localhost
     password: Password1
+    sample_deployment: true
     EOF
     ```
 
-3. To configure the OLAM project automatically, create another variables file (called `variables.yml`) inside the scripts directory. Run the below command with your values to create that variables file.
+3. (**OPTIONAL**) To configure the OLAM project automatically, create another variables file (called `variables.yml`) inside the scripts directory. Run the below command with your values to create that variables file.
 
     ```bash
     cat <<'EOF' > scripts/variables.yml
@@ -38,6 +39,8 @@
         host_filter: 192.168.56.[23-24]
     EOF
     ```
+    > **NOTE:** Creating this variables.yml file is optional and only required if you set `sample_deployment` to false. If that value is set to true, this `variables.yml` file will be generated automatically.
+
     > **NOTE:** In this [sample project](https://github.com/etho201/olam-sample-project), the Ansible Vault password is `Password1`, and that is used to decrypt the `admin_secret` password contained in `secrets.yml`.
 
     > **NOTE:** You can use the above variables as is, and in the future you can fork that repository to create your own project with your own bespoke configurations.
