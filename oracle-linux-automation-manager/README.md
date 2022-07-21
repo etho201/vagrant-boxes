@@ -25,9 +25,9 @@
     ---
     - github_username: your_github_username
     - github_pat: ghp_AaBbCcDd112233445566778899
-    - scm_url: https://github.com/etho201/olam-project
+    - scm_url: https://github.com/etho201/olam-sample-project
     - scm_branch: main
-    - project_name: My OLAM Project
+    - project_name: OLAM Sample Project
     - project_description: Automated deployments with OLAM
     - playbook: playbook.yml
     - vault_password: Password1
@@ -38,7 +38,7 @@
         host_filter: 192.168.56.[23-24]
     EOF
     ```
-    > **NOTE:** In this [sample project](https://github.com/etho201/olam-project), the Ansible Vault password is `Password1`, and that is used to decrypt the `admin_secret` password contained in `secrets.yml`.
+    > **NOTE:** In this [sample project](https://github.com/etho201/olam-sample-project), the Ansible Vault password is `Password1`, and that is used to decrypt the `admin_secret` password contained in `secrets.yml`.
 
     > **NOTE:** You can use the above variables as is, and in the future you can fork that repository to create your own project with your own bespoke configurations.
 
