@@ -1,9 +1,9 @@
 ---
 - github_username: your_github_username
 - github_pat: ghp_AaBbCcDd112233445566778899
-- scm_url: https://github.com/etho201/olam-project
+- scm_url: https://github.com/etho201/olam-sample-project
 - scm_branch: main
-- project_name: My OLAM Project
+- project_name: OLAM Sample Project
 - project_description: Automated deployments with OLAM
 - playbook: playbook.yml
 - vault_password: Password1
